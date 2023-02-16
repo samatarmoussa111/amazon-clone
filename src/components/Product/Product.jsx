@@ -3,8 +3,24 @@ import "./Product.css";
 import StarRateRoundedIcon from "@material-ui/icons/StarRateRounded";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { amber } from "@material-ui/core/colors";
+import { useStateValue } from "../../contexts/BasketContext";
 
 const Product = ({ id, title, image, price, rating }) => {
+  const [{ basket }, dispatch] = useStateValue();
+
+  const addProduct = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      payload: {
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        rating: rating,
+      },
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="product">
@@ -28,7 +44,7 @@ const Product = ({ id, title, image, price, rating }) => {
           </div>
         </div>
         <img src={image} alt="" />
-        <button>Add to Basket</button>
+        <button onClick={addProduct}>Add to Basket</button>
       </div>
     </ThemeProvider>
   );
