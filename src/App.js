@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Checkout from "./Checkout";
-import Header from "./Header";
-import Home from "./Home";
-import NotFound from "./NotFound";
+import Checkout from "./pages/Checkout/Checkout";
+import Header from "./components/Header/Header";
+import Home from "./pages/Home/Home";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
