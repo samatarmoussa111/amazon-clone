@@ -35,7 +35,7 @@ const Product = ({ id, title, image, price, rating }) => {
               .fill()
               .map((_, i) => {
                 return (
-                  <p>
+                  <p key={i}>
                     {" "}
                     <StarRateRoundedIcon color="primary" />{" "}
                   </p>
