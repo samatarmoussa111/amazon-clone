@@ -6,7 +6,8 @@ import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
 import Header from "../../components/Header/Header";
 
 const Checkout = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
+  console.log(user);
   return (
     <>
       <Header />
@@ -18,6 +19,7 @@ const Checkout = () => {
             alt="amazon ads"
           />
           <div>
+            <h3> {user ? `Hello, ${user.email}` : ""}</h3>
             <h2 className="checkout__title">Your shopping Basket</h2>
             {basket.map((item, k) => {
               return <CheckoutProduct key={k} item={item} />;

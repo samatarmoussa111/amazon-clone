@@ -1,8 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { auth } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const Login = () => {
+  const inputsRef = useRef([]);
+  const Navigate = useNavigate();
+
+  const addInputs = (element) => {
+    if (element && !inputsRef.current.includes(element)) {
+      inputsRef.current.push(element);
+    }
+  };
+
+  const signIn = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(
+      auth,
+      inputsRef.current[0].value,
+      inputsRef.current[1].value
+    )
+      .then((cred) => {
+        if (cred) {
+          Navigate("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
+
+  const register = () => {
+    createUserWithEmailAndPassword(
+      auth,
+      inputsRef.current[0].value,
+      inputsRef.current[1].value
+    )
+      .then((cred) => {
+        if (cred) {
+          Navigate("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
+
   return (
     <div className="login">
       <Link to="/">
@@ -14,18 +57,18 @@ const Login = () => {
       </Link>
       <div className="login__container">
         <h1>Sign-in</h1>
-        <form>
+        <form onSubmit={signIn}>
           <h5>E-mail</h5>
-          <input type="text" />
+          <input type="text" ref={addInputs} />
           <h5>Password</h5>
-          <input type="password" />
+          <input type="password" ref={addInputs} />
           <button className="login__signInButton">Sign In</button>
         </form>
         <p>
           By signing-in you agree to AMAZON FAKE CLONE conditions of use & sale.
           Please see our privacy notice, our cookies.
         </p>
-        <button className="login__registerButton">
+        <button className="login__registerButton" onClick={register}>
           Create your Amazon Account{" "}
         </button>
       </div>
