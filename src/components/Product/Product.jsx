@@ -1,8 +1,8 @@
 import React from "react";
 import "./Product.css";
-import StarRateRoundedIcon from "@material-ui/icons/StarRateRounded";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import { amber } from "@material-ui/core/colors";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { amber } from "@mui/material/colors";
 import { useStateValue } from "../../contexts/BasketContext";
 
 const Product = ({ id, title, image, price, rating }) => {
@@ -37,7 +37,7 @@ const Product = ({ id, title, image, price, rating }) => {
                 return (
                   <p key={i}>
                     {" "}
-                    <StarRateRoundedIcon color="primary" />{" "}
+                    <StarRateIcon color="primary" />{" "}
                   </p>
                 );
               })}

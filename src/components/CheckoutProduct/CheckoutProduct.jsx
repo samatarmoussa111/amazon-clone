@@ -1,5 +1,5 @@
 import React from "react";
-import StarRateRoundedIcon from "@material-ui/icons/StarRateRounded";
+import StarRateIcon from "@mui/icons-material/StarRate";
 import "./CheckoutProduct.css";
 import { useStateValue } from "../../contexts/BasketContext";
 
@@ -27,7 +27,7 @@ const CheckoutProduct = ({ item }) => {
             .fill()
             .map((_, i) => (
               <p>
-                <StarRateRoundedIcon />
+                <StarRateIcon />
               </p>
             ))}
         </div>
